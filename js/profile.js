@@ -1,35 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-	 <!--Cognito JavaScript-->
-	<script src="js/amazon-cognito-identity.min.js"></script>  
-	<script src="js/config.js"></script>
-  </head>
-
-  <body>
-	<div class="container">
-      <div>
-        <h2>User Profile</h2>
-		<button type="button" onclick="signOut()">Sign out</button>
-      </div>
-	
-	<div>
-
-		<h4>Personal Information</h4>
-		
-		<br>
-		<div>
-			<label>Email <span>(Username)</span></label>
-		</div>
-		<div>
-			<label id="email_value"></label>
-		</div>
-		
-    </div>
-
-    <script>
-	var data = { 
+var data = { 
 		UserPoolId : _config.cognito.userPoolId,
         ClientId : _config.cognito.clientId
     };
@@ -44,6 +13,7 @@
                 return;
             }
             console.log('session validity: ' + session.isValid());
+            
 			//Set the profile info
 			cognitoUser.getUserAttributes(function(err, result) {
 				if (err) {
@@ -56,12 +26,5 @@
 			
         });
     }
+        
 }
-	function signOut(){
-	    if (cognitoUser != null) {
-          cognitoUser.signOut();	  
-        }
-	}
-    </script>
-  </body>
-</html>
